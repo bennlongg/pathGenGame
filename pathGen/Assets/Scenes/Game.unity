@@ -465,9 +465,15 @@ MonoBehaviour:
   - {fileID: 1956195859416804, guid: 07ea2b37e14b546788d135bd01332006, type: 2}
   leftCityTiles:
   - {fileID: 1632686841665100, guid: dc6f9c3a05e6644af8a11a03a8e43440, type: 2}
-  rightIceTiles: []
-  straightIceTiles: []
-  leftIceTiles: []
+  rightIceTiles:
+  - {fileID: 1948778933448414, guid: 21949d4769caa43cb944d34b3cb162e2, type: 2}
+  straightIceTiles:
+  - {fileID: 1144512275901022, guid: 21e103a94a16949a6af1bff12020d1c5, type: 2}
+  leftIceTiles:
+  - {fileID: 1407213425975874, guid: 321c7a5ca16014782b9ba202eb90c361, type: 2}
+  transitionTiles:
+  - {fileID: 1227983759754326, guid: e114f648c5e5c4881994ddb355048465, type: 2}
+  - {fileID: 1483490905157122, guid: 99badfc9722bb49b7b31e748f1cb5ef4, type: 2}
   currentTile: {fileID: 2035498758}
   previousTile: {fileID: 1587796997805836, guid: 984dc2b41ebcc4343b3f9d30ac338a27,
     type: 2}

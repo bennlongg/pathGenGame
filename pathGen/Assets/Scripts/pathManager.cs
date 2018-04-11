@@ -16,6 +16,8 @@ public class pathManager : MonoBehaviour
     public GameObject[] straightIceTiles;
     public GameObject[] leftIceTiles;
 
+    public GameObject[] transitionTiles;
+
     public GameObject currentTile;
     private GameObject nextTile;
     public GameObject previousTile;
@@ -138,8 +140,10 @@ public class pathManager : MonoBehaviour
                 return straightFarmTiles[Random.Range(0, straightFarmTiles.Length)];
             case 2:
                 return leftFarmTiles[Random.Range(0, leftFarmTiles.Length)];
-        }
-        } else if (totalTileCount >= changeToCity && totalTileCount < changeToIce) {
+        } 
+        } else if (totalTileCount == changeToCity) {
+            return transitionTiles[0];
+        } else if (totalTileCount > changeToCity && totalTileCount < changeToIce) {
             camera.transform.GetComponent<Camera>().backgroundColor = new Color32(58, 58, 58, 255);
              switch (index)
         {
@@ -150,8 +154,10 @@ public class pathManager : MonoBehaviour
             case 2:
                 return leftCityTiles[Random.Range(0, leftCityTiles.Length)];
         }
-        } else if (totalTileCount >= changeToIce) {
-            // camera.transform.GetComponent<Camera>().backgroundColor = new Color32(58, 58, 58, 255);
+        }  else if (totalTileCount == changeToIce) {
+            return transitionTiles[1];
+        }else if (totalTileCount > changeToIce) {
+            camera.transform.GetComponent<Camera>().backgroundColor = new Color32(98, 189, 255, 255);
              switch (index)
         {
             case 0:

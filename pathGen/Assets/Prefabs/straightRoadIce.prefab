@@ -52,6 +52,8 @@ GameObject:
   - component: {fileID: 4087553144112244}
   - component: {fileID: 33284236438574136}
   - component: {fileID: 23576352886786306}
+  - component: {fileID: 64816399399968674}
+  - component: {fileID: 54008346438232136}
   m_Layer: 0
   m_Name: straightIce
   m_TagString: Untagged
@@ -140,6 +142,35 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1849158079488980}
+  m_Mesh: {fileID: 4300000, guid: 8246b5dee4fcc464f9a15cef318b31cf, type: 3}
+--- !u!54 &54008346438232136
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1849158079488980}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!64 &64816399399968674
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1849158079488980}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 8246b5dee4fcc464f9a15cef318b31cf, type: 3}
 --- !u!114 &114819098285014562
 MonoBehaviour:
