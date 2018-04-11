@@ -8,12 +8,19 @@ public Transform target;
 public Transform ring;
 public float smoothSpeed = 100f;
 public Vector3 offset;
+// public GameObject pathManager;
 
+
+void start() {
+// pathManager = GameObject.Find("pathManager").GetComponent<pathManager>();
+}
 void FixedUpdate() {
 	Vector3 desiredPosition = target.position + offset;
 	Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
 	transform.position = smoothedPosition;
-	// transform.LookAt(ring);
-}
 
+	// if(pathManager.totalTileCount > pathManager.changeToCity) {
+	// 	transform.GetComponent<Camera>().backgroundColor = new Color32(58, 58, 58, 255);
+	// }
+}
 }

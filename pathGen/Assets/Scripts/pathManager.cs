@@ -4,27 +4,38 @@ using UnityEngine;
 
 public class pathManager : MonoBehaviour
 {
+    public GameObject[] rightFarmTiles;
+    public GameObject[] straightFarmTiles;
+    public GameObject[] leftFarmTiles;
 
-    public GameObject[] tiles;
+    public GameObject[] rightCityTiles;
+    public GameObject[] straightCityTiles;
+    public GameObject[] leftCityTiles;
+
+    public GameObject[] rightIceTiles;
+    public GameObject[] straightIceTiles;
+    public GameObject[] leftIceTiles;
+
     public GameObject currentTile;
     private GameObject nextTile;
     public GameObject previousTile;
     public int pathLength;
-
+    public int totalTileCount;
     private int tileInt;
 
-    // Use this for initialization
+    public int changeToCity;
+    public int changeToIce;
+
+    public GameObject camera;
+
     void Start()
     {
         currentTile.transform.position = gameObject.transform.position;
-        transform.position = new Vector3(0, 0, 0);
         spawnMap();
     }
 
-    // Update is called once per frame
     void Update()
     {
-
     }
 
     public void spawnMap()
@@ -45,6 +56,12 @@ public class pathManager : MonoBehaviour
                     break;
             }
         }
+
+        if (transform.childCount > 20)
+        {
+            Destroy(transform.GetChild(0).gameObject);
+        }
+            Invoke("spawnMap", 1.5f);
     }
 
     void spawnTile()
@@ -53,41 +70,37 @@ public class pathManager : MonoBehaviour
         {
             if (previousTile.gameObject.tag == "left")
             {
-                int index = Random.Range(0, 2);
-                nextTile = Instantiate(tiles[index], currentTile.transform.GetChild(0).transform.GetChild(1).position, Quaternion.identity) as GameObject;
-                nextTile.transform.Rotate(0, 0, currentTile.transform.rotation.eulerAngles.z + 90);
+                nextTile = Instantiate(getTile(0, 2), currentTile.transform.GetChild(0).transform.GetChild(0).position, Quaternion.identity) as GameObject;
+                nextTile.transform.Rotate(0, currentTile.transform.rotation.eulerAngles.y - 90, 0);
             }
             else
             {
                 instantiateTile();
-                // instantiateTile(0, tiles.Length);
-                nextTile.transform.Rotate(0, 0, currentTile.transform.rotation.eulerAngles.z + 90);
+                nextTile.transform.Rotate(0, currentTile.transform.rotation.eulerAngles.y - 90, 0);
             }
-
         }
         if (currentTile.gameObject.tag == "right")
         {
             if (previousTile.gameObject.tag == "right")
             {
-                int index = Random.Range(1, 3);
-                nextTile = Instantiate(tiles[index], currentTile.transform.GetChild(0).transform.GetChild(1).position, Quaternion.identity) as GameObject;
-                nextTile.transform.Rotate(0, 0, currentTile.transform.rotation.eulerAngles.z - 90);
+                nextTile = Instantiate(getTile(1, 3), currentTile.transform.GetChild(0).transform.GetChild(0).position, Quaternion.identity) as GameObject;
+                nextTile.transform.Rotate(0, currentTile.transform.rotation.eulerAngles.y + 90, 0);
             }
             else
             {
                 instantiateTile();
-                nextTile.transform.Rotate(0, 0, currentTile.transform.rotation.eulerAngles.z - 90);
+                nextTile.transform.Rotate(0, currentTile.transform.rotation.eulerAngles.y + 90, 0);
             }
         }
         if (currentTile.gameObject.tag == "straight")
         {
             instantiateTile();
-            nextTile.transform.Rotate(0, 0, currentTile.transform.rotation.eulerAngles.z);
+            nextTile.transform.Rotate(0, currentTile.transform.rotation.eulerAngles.y, 0);
         }
         previousTile = currentTile;
         currentTile = nextTile;
         currentTile.transform.parent = gameObject.transform;
-
+        totalTileCount += 1;
     }
 
     void instantiateTile()
@@ -108,10 +121,47 @@ public class pathManager : MonoBehaviour
         else
         {
             min = 0;
-            max = tiles.Length;
+            max = 3;
         }
-        int index = Random.Range(min, max);
-        nextTile = Instantiate(tiles[index], currentTile.transform.GetChild(0).transform.GetChild(1).position, Quaternion.identity) as GameObject;
+        nextTile = Instantiate(getTile(min, max), currentTile.transform.GetChild(0).transform.GetChild(0).position, Quaternion.identity) as GameObject;
+    }
 
+        GameObject getTile(int min, int max)
+    {
+        int index = Random.Range(min, max);
+        if(totalTileCount < changeToCity) {
+        switch (index)
+        {
+            case 0:
+                return rightFarmTiles[Random.Range(0, rightFarmTiles.Length)];
+            case 1:
+                return straightFarmTiles[Random.Range(0, straightFarmTiles.Length)];
+            case 2:
+                return leftFarmTiles[Random.Range(0, leftFarmTiles.Length)];
+        }
+        } else if (totalTileCount >= changeToCity && totalTileCount < changeToIce) {
+            camera.transform.GetComponent<Camera>().backgroundColor = new Color32(58, 58, 58, 255);
+             switch (index)
+        {
+            case 0:
+                return rightCityTiles[Random.Range(0, rightCityTiles.Length)];
+            case 1:
+                return straightCityTiles[Random.Range(0, straightCityTiles.Length)];
+            case 2:
+                return leftCityTiles[Random.Range(0, leftCityTiles.Length)];
+        }
+        } else if (totalTileCount >= changeToIce) {
+            // camera.transform.GetComponent<Camera>().backgroundColor = new Color32(58, 58, 58, 255);
+             switch (index)
+        {
+            case 0:
+                return rightIceTiles[Random.Range(0, rightIceTiles.Length)];
+            case 1:
+                return straightIceTiles[Random.Range(0, straightIceTiles.Length)];
+            case 2:
+                return leftIceTiles[Random.Range(0, leftIceTiles.Length)];
+        }
+        }
+        return null;
     }
 }

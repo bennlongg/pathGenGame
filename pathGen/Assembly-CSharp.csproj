@@ -52,13 +52,16 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\cameraFollow.cs" />
+     <Compile Include="Assets\car.cs" />
+     <Compile Include="Assets\destroyer.cs" />
+     <Compile Include="Assets\edgeCollider.cs" />
      <Compile Include="Assets\movePath.cs" />
      <Compile Include="Assets\player.cs" />
+     <Compile Include="Assets\Prefabs\obsticles.cs" />
      <Compile Include="Assets\ring.cs" />
      <Compile Include="Assets\Scripts\LevelManager.cs" />
      <Compile Include="Assets\Scripts\MusicPlayer.cs" />
      <Compile Include="Assets\Scripts\pathManager.cs" />
-     <Compile Include="Assets\Scripts\pathManager3D.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
